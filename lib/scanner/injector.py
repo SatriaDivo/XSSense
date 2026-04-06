@@ -1,5 +1,6 @@
 from urllib.parse import parse_qs, urljoin, urlparse
 from typing import List
+import time
 
 from bs4 import BeautifulSoup
 
@@ -32,6 +33,7 @@ class Injector:
     def _send_request(self, method, url, **kwargs):
         last_error = None
         for _ in range(self.retries + 1):
+            start = time.perf_counter()
             try:
                 response = self.session.request(
                     method,
@@ -40,10 +42,11 @@ class Injector:
                     timeout=self.timeout,
                     **kwargs,
                 )
-                return response, None
+                elapsed_ms = int((time.perf_counter() - start) * 1000)
+                return response, None, elapsed_ms, response.status_code
             except Exception as e:
                 last_error = str(e)
-        return None, last_error
+        return None, last_error, None, None
 
     def _collect_form_keys(self, form):
         keys = {}
@@ -76,14 +79,18 @@ class Injector:
                 continue
 
             Log.info("Sending payload (POST) method...")
-            response, error = self._send_request("POST", form_url, data=keys)
+            response, error, elapsed_ms, status_code = self._send_request("POST", form_url, data=keys)
             if response is None:
                 results.append(
                     ScanResult(
                         method="POST",
+                        source="post_form",
                         target_url=form_url,
+                        parameter_name=",".join(keys.keys()),
                         payload=self.payload,
                         detected=False,
+                        status_code=status_code,
+                        response_time_ms=elapsed_ms,
                         request_data=keys,
                         error=error,
                     )
@@ -93,9 +100,13 @@ class Injector:
             results.append(
                 ScanResult(
                     method="POST",
+                    source="post_form",
                     target_url=response.url,
+                    parameter_name=",".join(keys.keys()),
                     payload=self.payload,
                     detected=self.detector.is_reflected(self.payload, response.text),
+                    status_code=status_code,
+                    response_time_ms=elapsed_ms,
                     request_data=keys,
                 )
             )
@@ -120,14 +131,18 @@ class Injector:
                 continue
 
             Log.info("Sending payload (GET) method...")
-            response, error = self._send_request("GET", form_url, params=keys)
+            response, error, elapsed_ms, status_code = self._send_request("GET", form_url, params=keys)
             if response is None:
                 results.append(
                     ScanResult(
                         method="GET",
+                        source="get_form",
                         target_url=form_url,
+                        parameter_name=",".join(keys.keys()),
                         payload=self.payload,
                         detected=False,
+                        status_code=status_code,
+                        response_time_ms=elapsed_ms,
                         request_data=keys,
                         error=error,
                     )
@@ -137,9 +152,13 @@ class Injector:
             results.append(
                 ScanResult(
                     method="GET",
+                    source="get_form",
                     target_url=response.url,
+                    parameter_name=",".join(keys.keys()),
                     payload=self.payload,
                     detected=self.detector.is_reflected(self.payload, response.text),
+                    status_code=status_code,
+                    response_time_ms=elapsed_ms,
                     request_data=keys,
                 )
             )
@@ -170,14 +189,18 @@ class Injector:
             target_url = parsed._replace(query="").geturl()
             Log.info("Query (GET) : " + target_url + " -> " + str(test_params))
 
-            response, error = self._send_request("GET", target_url, params=test_params)
+            response, error, elapsed_ms, status_code = self._send_request("GET", target_url, params=test_params)
             if response is None:
                 results.append(
                     ScanResult(
                         method="GET",
+                        source="get_link",
                         target_url=target_url,
+                        parameter_name=",".join(test_params.keys()),
                         payload=self.payload,
                         detected=False,
+                        status_code=status_code,
+                        response_time_ms=elapsed_ms,
                         request_data=test_params,
                         error=error,
                     )
@@ -187,9 +210,13 @@ class Injector:
             results.append(
                 ScanResult(
                     method="GET",
+                    source="get_link",
                     target_url=response.url,
+                    parameter_name=",".join(test_params.keys()),
                     payload=self.payload,
                     detected=self.detector.is_reflected(self.payload, response.text),
+                    status_code=status_code,
+                    response_time_ms=elapsed_ms,
                     request_data=test_params,
                 )
             )

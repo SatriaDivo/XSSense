@@ -75,6 +75,8 @@ Use timeout, retries, and JSON report:
 python xssense.py --single https://testphp.vulnweb.com --timeout 10 --retries 2 --output-json reports/scan.json
 ```
 
+JSON report includes request metadata such as `source`, `parameter_name`, `status_code`, and `response_time_ms`.
+
 ## Payload Wordlists
 
 Payload files are provided in the `payloads/` folder:
