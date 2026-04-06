@@ -33,20 +33,56 @@ class core:
 		return "<script>" + FUNCTION[randint(0, 4)] + "</script>"
 
 	@classmethod
-	def main(self, url, proxy, headers, payloads, cookie, method=2):
+	def _request_with_retries(self, method, url, **kwargs):
+		last_error = None
+		for _ in range(self.retries + 1):
+			try:
+				response = self.session.request(
+					method,
+					url,
+					verify=False,
+					timeout=self.timeout,
+					**kwargs,
+				)
+				return response, None
+			except Exception as e:
+				last_error = str(e)
+		return None, last_error
+
+	@classmethod
+	def main(
+		self,
+		url,
+		proxy,
+		headers,
+		payloads,
+		cookie,
+		method=2,
+		timeout=15,
+		retries=1,
+		output_json=None,
+	):
 		print(W + "*" * 15)
 		self.url = url
+		self.timeout = timeout
+		self.retries = retries
 		self.session = session(proxy, headers, cookie)
 		self.detector = Detector()
 		self.reporter = Reporter()
 		Log.info("Checking connection to: " + Y + url)
 
-		try:
-			ctr = self.session.get(url, verify=False)
-			self.body = ctr.text
-		except Exception as e:
-			Log.high("Internal error: " + str(e))
+		ctr, error = self._request_with_retries("GET", url)
+		if ctr is None and url.lower().startswith("http://"):
+			fallback_url = "https://" + url[7:]
+			Log.warning("HTTP failed, trying HTTPS fallback: " + C + fallback_url)
+			ctr, error = self._request_with_retries("GET", fallback_url)
+
+		if ctr is None:
+			Log.high("Internal error: " + str(error))
 			return
+
+		self.url = ctr.url
+		self.body = ctr.text
 
 		if ctr.status_code > 400:
 			Log.info("Connection failed " + G + str(ctr.status_code))
@@ -63,6 +99,8 @@ class core:
 				payload=payload,
 				detector=self.detector,
 				reporter=self.reporter,
+				timeout=self.timeout,
+				retries=self.retries,
 			)
 
 			results = []
@@ -83,3 +121,6 @@ class core:
 					findings += 1
 
 			Log.info(f"Payload summary: {findings} findings from {len(results)} checks")
+
+		if output_json:
+			self.reporter.export_json(output_json)

@@ -9,13 +9,41 @@ from lib.scanner.contracts import ScanResult
 
 
 class Injector:
-    def __init__(self, session, base_url, html_body, payload, detector, reporter):
+    def __init__(
+        self,
+        session,
+        base_url,
+        html_body,
+        payload,
+        detector,
+        reporter,
+        timeout=15,
+        retries=1,
+    ):
         self.session = session
         self.base_url = base_url
         self.html_body = html_body
         self.payload = payload
         self.detector = detector
         self.reporter = reporter
+        self.timeout = timeout
+        self.retries = retries
+
+    def _send_request(self, method, url, **kwargs):
+        last_error = None
+        for _ in range(self.retries + 1):
+            try:
+                response = self.session.request(
+                    method,
+                    url,
+                    verify=False,
+                    timeout=self.timeout,
+                    **kwargs,
+                )
+                return response, None
+            except Exception as e:
+                last_error = str(e)
+        return None, last_error
 
     def _collect_form_keys(self, form):
         keys = {}
@@ -48,9 +76,8 @@ class Injector:
                 continue
 
             Log.info("Sending payload (POST) method...")
-            try:
-                response = self.session.post(form_url, data=keys, verify=False)
-            except Exception as e:
+            response, error = self._send_request("POST", form_url, data=keys)
+            if response is None:
                 results.append(
                     ScanResult(
                         method="POST",
@@ -58,7 +85,7 @@ class Injector:
                         payload=self.payload,
                         detected=False,
                         request_data=keys,
-                        error=str(e),
+                        error=error,
                     )
                 )
                 continue
@@ -93,9 +120,8 @@ class Injector:
                 continue
 
             Log.info("Sending payload (GET) method...")
-            try:
-                response = self.session.get(form_url, params=keys, verify=False)
-            except Exception as e:
+            response, error = self._send_request("GET", form_url, params=keys)
+            if response is None:
                 results.append(
                     ScanResult(
                         method="GET",
@@ -103,7 +129,7 @@ class Injector:
                         payload=self.payload,
                         detected=False,
                         request_data=keys,
-                        error=str(e),
+                        error=error,
                     )
                 )
                 continue
@@ -144,9 +170,8 @@ class Injector:
             target_url = parsed._replace(query="").geturl()
             Log.info("Query (GET) : " + target_url + " -> " + str(test_params))
 
-            try:
-                response = self.session.get(target_url, params=test_params, verify=False)
-            except Exception as e:
+            response, error = self._send_request("GET", target_url, params=test_params)
+            if response is None:
                 results.append(
                     ScanResult(
                         method="GET",
@@ -154,7 +179,7 @@ class Injector:
                         payload=self.payload,
                         detected=False,
                         request_data=test_params,
-                        error=str(e),
+                        error=error,
                     )
                 )
                 continue

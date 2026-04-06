@@ -7,7 +7,19 @@ import xssense_engine
 class crawler:
 	
 	@classmethod
-	def crawl(self,base,depth,proxy,headers,level,method,cookie):
+	def crawl(
+		self,
+		base,
+		depth,
+		proxy,
+		headers,
+		level,
+		method,
+		cookie,
+		timeout=15,
+		retries=1,
+		output_json=None,
+	):
 		Log.info(f"[*] Menyalakan Mesin Crawler RUST kecepatan Tinggi (Max Depth: {depth}) untuk menyedot URL...")
 		
 		# Mengeksekusi ekstensi Rust yang merayap semua URL dalam hitungan detik!
@@ -22,4 +34,4 @@ class crawler:
 		for url in urls:
 			if url.startswith("https://") or url.startswith("http://"):
 				# Langsung Panggil Scanner Core tanpa Process lama
-				core.main(url, proxy, headers, level, cookie, method)	
+				core.main(url, proxy, headers, level, cookie, method, timeout, retries, output_json)	

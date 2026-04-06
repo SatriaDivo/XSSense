@@ -58,24 +58,58 @@ def start():
 	pos_opt.add_argument("--proxy",default=None,metavar="",help="Set proxy (e.g. {'https':'https://10.10.1.10:1080'})")
 	pos_opt.add_argument("--about",action="store_true",help="Print information about XSSense tool")
 	pos_opt.add_argument("--cookie",help="Set cookie (e.g {'ID':'1094200543'})",default='''{"ID":"1094200543"}''',metavar="")
+	pos_opt.add_argument("--timeout",type=float,default=15,metavar="",help="Request timeout in seconds. Default: 15")
+	pos_opt.add_argument("--retries",type=int,default=1,metavar="",help="Retry count per request. Default: 1")
+	pos_opt.add_argument("--output-json",default=None,metavar="",help="Write scan result report to JSON file (e.g. reports/scan.json)")
 	
 	getopt=parse.parse_args()
 	print(logo)
 	Log.info("Starting XSSense...")
 	if getopt.u:
 		payloads = check(getopt)
-		core.main(getopt.u,getopt.proxy,getopt.user_agent,payloads,getopt.cookie,getopt.method)
+		core.main(
+			getopt.u,
+			getopt.proxy,
+			getopt.user_agent,
+			payloads,
+			getopt.cookie,
+			getopt.method,
+			getopt.timeout,
+			getopt.retries,
+			getopt.output_json,
+		)
 		try:
 			from lib.crawler.crawler import crawler
 		except ImportError as e:
 			Log.high("Crawler engine is unavailable. Build/install xssense_engine first: " + str(e))
 			return
 
-		crawler.crawl(getopt.u,int(getopt.depth),getopt.proxy,getopt.user_agent,payloads,getopt.method,getopt.cookie)
+		crawler.crawl(
+			getopt.u,
+			int(getopt.depth),
+			getopt.proxy,
+			getopt.user_agent,
+			payloads,
+			getopt.method,
+			getopt.cookie,
+			getopt.timeout,
+			getopt.retries,
+			getopt.output_json,
+		)
 		
 	elif getopt.single:
 		payloads = check(getopt)
-		core.main(getopt.single,getopt.proxy,getopt.user_agent,payloads,getopt.cookie,getopt.method)
+		core.main(
+			getopt.single,
+			getopt.proxy,
+			getopt.user_agent,
+			payloads,
+			getopt.cookie,
+			getopt.method,
+			getopt.timeout,
+			getopt.retries,
+			getopt.output_json,
+		)
 		
 	elif getopt.about:
 		print("""

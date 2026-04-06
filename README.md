@@ -69,6 +69,12 @@ Use payload wordlist:
 python xssense.py -u https://testphp.vulnweb.com --wordlist payloads/payloads_reflected.txt --depth 3
 ```
 
+Use timeout, retries, and JSON report:
+
+```bash
+python xssense.py --single https://testphp.vulnweb.com --timeout 10 --retries 2 --output-json reports/scan.json
+```
+
 ## Payload Wordlists
 
 Payload files are provided in the `payloads/` folder:
@@ -85,6 +91,8 @@ Payload files are provided in the `payloads/` folder:
 - External payload wordlist support via `--wordlist`
 - Rust-based same-host link crawling
 - Configurable cookie, proxy, user-agent, method, and depth
+- Configurable request timeout and retries
+- Optional JSON report output
 
 ## Legal Notice
 
