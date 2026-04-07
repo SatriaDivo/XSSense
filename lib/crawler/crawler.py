@@ -35,6 +35,7 @@ class crawler:
 		retries=1,
 		output_json=None,
 		reporter=None,
+		detection_mode="strict",
 	):
 		engine = _resolve_rust_engine()
 		if engine is None:
@@ -69,4 +70,5 @@ class crawler:
 					output_json,
 					reporter=reporter,
 					auto_export=False,
+					detection_mode=detection_mode,
 				)

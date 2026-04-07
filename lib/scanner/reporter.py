@@ -24,18 +24,30 @@ class Reporter:
             return
 
         if result.detected:
-            Log.high(f"Detected XSS ({result.method}) at " + result.target_url)
+            confidence_text = ""
+            if result.confidence_level is not None or result.confidence_score is not None:
+                confidence_text = f" [{result.confidence_level or 'unknown'}:{result.confidence_score or 0}]"
+            Log.high(f"Detected XSS ({result.method}) at " + result.target_url + confidence_text)
             self.write_finding(result.target_url)
             if result.request_data is not None:
                 Log.high(f"{result.method} data: " + str(result.request_data))
+            if result.evidence:
+                Log.info("Evidence: " + result.evidence[:160])
         else:
             Log.info(f"Parameter page using ({result.method}) payloads but not 100% yet...")
 
     def export_json(self, output_json_path):
+        confidence_summary = {
+            "high": len([item for item in self.results if item.get("confidence_level") == "high"]),
+            "medium": len([item for item in self.results if item.get("confidence_level") == "medium"]),
+            "low": len([item for item in self.results if item.get("confidence_level") == "low"]),
+        }
+
         payload = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
             "total_checks": len(self.results),
             "total_findings": len([item for item in self.results if item.get("detected")]),
+            "confidence_summary": confidence_summary,
             "findings": [item for item in self.results if item.get("detected")],
             "results": self.results,
         }

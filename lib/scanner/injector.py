@@ -78,6 +78,9 @@ class Injector:
             keys[name] = value
         return keys
 
+    def _analyze(self, response_text):
+        return self.detector.analyze_reflection(self.payload, response_text)
+
     def _collect_get_link_candidates(self):
         candidates = []
         bs_obj = BeautifulSoup(self.html_body, "html.parser")
@@ -138,7 +141,7 @@ class Injector:
             results = []
             for item, entry in zip(candidates, detailed_results):
                 target_url, response_body, status_code, response_time_ms, error = entry
-                detected = self.detector.is_reflected(self.payload, response_body)
+                analysis = self._analyze(response_body)
                 results.append(
                     ScanResult(
                         method="GET",
@@ -146,11 +149,16 @@ class Injector:
                         target_url=target_url,
                         parameter_name=item["parameter_name"],
                         payload=self.payload,
-                        detected=detected,
+                        detected=analysis["detected"],
                         status_code=status_code,
                         response_time_ms=response_time_ms,
                         request_data=item["request_data"],
                         error=error,
+                        detection_mode=analysis["detection_mode"],
+                        confidence_score=analysis["confidence_score"],
+                        confidence_level=analysis["confidence_level"],
+                        detection_reasons=analysis["detection_reasons"],
+                        evidence=analysis["evidence"],
                     )
                 )
             return results
@@ -165,6 +173,7 @@ class Injector:
         results = []
         for item in candidates:
             detected = item["injected_url"] in vulnerable_urls
+            confidence_score = 70 if detected else None
             results.append(
                 ScanResult(
                     method="GET",
@@ -176,6 +185,10 @@ class Injector:
                     status_code=None,
                     response_time_ms=None,
                     request_data=item["request_data"],
+                    detection_mode=getattr(self.detector, "mode", "strict"),
+                    confidence_score=confidence_score,
+                    confidence_level="medium" if detected else None,
+                    detection_reasons=["rust_contains_payload"] if detected else None,
                 )
             )
         return results
@@ -213,10 +226,12 @@ class Injector:
                         response_time_ms=elapsed_ms,
                         request_data=keys,
                         error=error,
+                        detection_mode=getattr(self.detector, "mode", "strict"),
                     )
                 )
                 continue
 
+            analysis = self._analyze(response.text)
             results.append(
                 ScanResult(
                     method="POST",
@@ -224,10 +239,15 @@ class Injector:
                     target_url=response.url,
                     parameter_name=",".join(keys.keys()),
                     payload=self.payload,
-                    detected=self.detector.is_reflected(self.payload, response.text),
+                    detected=analysis["detected"],
                     status_code=status_code,
                     response_time_ms=elapsed_ms,
                     request_data=keys,
+                    detection_mode=analysis["detection_mode"],
+                    confidence_score=analysis["confidence_score"],
+                    confidence_level=analysis["confidence_level"],
+                    detection_reasons=analysis["detection_reasons"],
+                    evidence=analysis["evidence"],
                 )
             )
         return results
@@ -265,10 +285,12 @@ class Injector:
                         response_time_ms=elapsed_ms,
                         request_data=keys,
                         error=error,
+                        detection_mode=getattr(self.detector, "mode", "strict"),
                     )
                 )
                 continue
 
+            analysis = self._analyze(response.text)
             results.append(
                 ScanResult(
                     method="GET",
@@ -276,10 +298,15 @@ class Injector:
                     target_url=response.url,
                     parameter_name=",".join(keys.keys()),
                     payload=self.payload,
-                    detected=self.detector.is_reflected(self.payload, response.text),
+                    detected=analysis["detected"],
                     status_code=status_code,
                     response_time_ms=elapsed_ms,
                     request_data=keys,
+                    detection_mode=analysis["detection_mode"],
+                    confidence_score=analysis["confidence_score"],
+                    confidence_level=analysis["confidence_level"],
+                    detection_reasons=analysis["detection_reasons"],
+                    evidence=analysis["evidence"],
                 )
             )
         return results
@@ -311,10 +338,12 @@ class Injector:
                         response_time_ms=elapsed_ms,
                         request_data=item["request_data"],
                         error=error,
+                        detection_mode=getattr(self.detector, "mode", "strict"),
                     )
                 )
                 continue
 
+            analysis = self._analyze(response.text)
             results.append(
                 ScanResult(
                     method="GET",
@@ -322,10 +351,15 @@ class Injector:
                     target_url=response.url,
                     parameter_name=item["parameter_name"],
                     payload=self.payload,
-                    detected=self.detector.is_reflected(self.payload, response.text),
+                    detected=analysis["detected"],
                     status_code=status_code,
                     response_time_ms=elapsed_ms,
                     request_data=item["request_data"],
+                    detection_mode=analysis["detection_mode"],
+                    confidence_score=analysis["confidence_score"],
+                    confidence_level=analysis["confidence_level"],
+                    detection_reasons=analysis["detection_reasons"],
+                    evidence=analysis["evidence"],
                 )
             )
         return results

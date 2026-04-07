@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 
 @dataclass
@@ -14,3 +14,8 @@ class ScanResult:
     response_time_ms: Optional[int] = None
     request_data: Optional[Dict[str, str]] = None
     error: Optional[str] = None
+    detection_mode: Optional[str] = None
+    confidence_score: Optional[int] = None
+    confidence_level: Optional[str] = None
+    detection_reasons: Optional[List[str]] = None
+    evidence: Optional[str] = None

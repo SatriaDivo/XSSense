@@ -72,6 +72,7 @@ def start():
 	pos_opt.add_argument("--timeout",type=float,default=15,metavar="",help="Request timeout in seconds. Default: 15")
 	pos_opt.add_argument("--retries",type=int,default=1,metavar="",help="Retry count per request. Default: 1")
 	pos_opt.add_argument("--output-json",default=None,metavar="",help="Write scan result report to JSON file (e.g. reports/scan.json)")
+	pos_opt.add_argument("--detection-mode",choices=["strict","loose"],default="strict",metavar="",help="Detection strictness: strict (lower false positive) or loose (higher coverage)")
 	
 	getopt=parse.parse_args()
 	print(logo)
@@ -97,6 +98,7 @@ def start():
 			getopt.output_json,
 			reporter=shared_reporter,
 			auto_export=False,
+			detection_mode=getopt.detection_mode,
 		)
 		try:
 			from lib.crawler.crawler import crawler
@@ -116,6 +118,7 @@ def start():
 			getopt.retries,
 			getopt.output_json,
 			reporter=shared_reporter,
+			detection_mode=getopt.detection_mode,
 		)
 		if getopt.output_json:
 			shared_reporter.export_json(getopt.output_json)
@@ -132,6 +135,7 @@ def start():
 			getopt.timeout,
 			getopt.retries,
 			getopt.output_json,
+			detection_mode=getopt.detection_mode,
 		)
 		
 	elif getopt.about:

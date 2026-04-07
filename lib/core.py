@@ -63,6 +63,7 @@ class core:
 		output_json=None,
 		reporter=None,
 		auto_export=True,
+		detection_mode="strict",
 	):
 		print(W + "*" * 15)
 		self.url = url
@@ -73,9 +74,10 @@ class core:
 		except Exception as e:
 			Log.high("Invalid request configuration: " + str(e))
 			return
-		self.detector = Detector()
+		self.detector = Detector(detection_mode)
 		self.reporter = reporter if reporter is not None else Reporter()
 		Log.info("Checking connection to: " + Y + url)
+		Log.info("Detection mode: " + G + self.detector.mode)
 
 		ctr, error = self._request_with_retries("GET", url)
 		if ctr is None and url.lower().startswith("http://"):
