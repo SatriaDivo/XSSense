@@ -61,14 +61,20 @@ class core:
 		timeout=15,
 		retries=1,
 		output_json=None,
+		reporter=None,
+		auto_export=True,
 	):
 		print(W + "*" * 15)
 		self.url = url
 		self.timeout = timeout
 		self.retries = retries
-		self.session = session(proxy, headers, cookie)
+		try:
+			self.session = session(proxy, headers, cookie)
+		except Exception as e:
+			Log.high("Invalid request configuration: " + str(e))
+			return
 		self.detector = Detector()
-		self.reporter = Reporter()
+		self.reporter = reporter if reporter is not None else Reporter()
 		Log.info("Checking connection to: " + Y + url)
 
 		ctr, error = self._request_with_retries("GET", url)
@@ -122,5 +128,5 @@ class core:
 
 			Log.info(f"Payload summary: {findings} findings from {len(results)} checks")
 
-		if output_json:
+		if output_json and auto_export:
 			self.reporter.export_json(output_json)
